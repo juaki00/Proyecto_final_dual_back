@@ -37,6 +37,8 @@ public interface UserManager {
      */
     String passwordFromNick(Connection con, String nick) throws SQLException;
 
+    Boolean sumaPuntos(Connection con, String nick, int puntos) throws SQLException;
+
     /**
      *
      * @param con conexion con la base de datos

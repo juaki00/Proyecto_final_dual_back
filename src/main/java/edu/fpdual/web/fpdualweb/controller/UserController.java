@@ -37,15 +37,6 @@ public class UserController {
     }
 
     @POST
-    @Path("/insert/")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public boolean insertUser(Usuario usuario) throws SQLException, ClassNotFoundException {
-        con = new MySQLConnector().getMySQLConnection();
-        return userManager.insertUser(con,usuario.getNick(), usuario.getNombre(), usuario.getPassword(), usuario.getApellido(), usuario.getTelefono(), usuario.getEmail());
-    }
-
-    @POST
     @Path("/getPass/")
     public Response getPass(String nick) throws SQLException, ClassNotFoundException {
         con = new MySQLConnector().getMySQLConnection();
@@ -81,5 +72,23 @@ public class UserController {
         } else {
             return Response.ok().entity(true).build();
         }
+    }
+
+    @POST
+    @Path("/insert/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean insertUser(Usuario usuario) throws SQLException, ClassNotFoundException {
+        con = new MySQLConnector().getMySQLConnection();
+        return userManager.insertUser(con,usuario.getNick(), usuario.getNombre(), usuario.getPassword(), usuario.getApellido(), usuario.getTelefono(), usuario.getEmail());
+    }
+
+    @POST
+    @Path("/sumaPuntos/")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public boolean sumaPuntos(Usuario usuario, @HeaderParam("puntos") int p) throws SQLException, ClassNotFoundException {
+        con = new MySQLConnector().getMySQLConnection();
+        return userManager.sumaPuntos(con, usuario.getNick(), p);
     }
 }

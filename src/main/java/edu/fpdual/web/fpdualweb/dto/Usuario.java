@@ -22,6 +22,8 @@ public class Usuario {
     private String apellido;
     private String telefono;
     private String email;
+    private int puntos;
+
 
     public Usuario(ResultSet result) throws SQLException {
         setNick(result.getString("nick"));
@@ -30,5 +32,8 @@ public class Usuario {
         setApellido(result.getString("apellido"));
         setTelefono(result.getString("telefono"));
         setEmail(result.getString("email"));
+        setPuntos(result.getInt("puntos"));
+
     }
+
 }
