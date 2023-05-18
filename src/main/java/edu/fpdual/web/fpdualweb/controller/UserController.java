@@ -36,6 +36,11 @@ public class UserController {
         return Response.ok().entity(usuarios).build();
     }
 
+    /**
+     *
+     * @param nick nombre de usuario a buscar
+     * @return devuelve la contraseña de ese nick
+     */
     @POST
     @Path("/getPass/")
     public Response getPass(String nick) throws SQLException, ClassNotFoundException {
@@ -49,6 +54,11 @@ public class UserController {
         }
     }
 
+    /**
+     *
+     * @param nick nombre de usuario a buscar
+     * @return devuelve una instancia de la clase Usuario que corresponde a ese nick
+     */
     @Produces(MediaType.APPLICATION_JSON)
     @POST
     @Path("/userFromNick/")
@@ -63,6 +73,10 @@ public class UserController {
         }
     }
 
+    /**
+     *
+     * @return devuelve true si ese nick existe
+     */
     @GET
     @Path("/existe/{nick}")
     public Response existeNick(@PathParam("nick") String nick) throws SQLException, ClassNotFoundException {
@@ -74,6 +88,11 @@ public class UserController {
         }
     }
 
+    /**
+     *
+     * @param usuario usuario nuevo par ainsertar
+     * @return true si se inserto el nuevo usuario
+     */
     @POST
     @Path("/insert/")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -83,6 +102,12 @@ public class UserController {
         return userManager.insertUser(con,usuario.getNick(), usuario.getNombre(), usuario.getPassword(), usuario.getApellido(), usuario.getTelefono(), usuario.getEmail());
     }
 
+    /**
+     *
+     * @param usuario usuario al que se le sumaran puntos
+     * @param p numero de puntos
+     * @return devuelve true si se sumaron los puntos correctamente
+     */
     @POST
     @Path("/sumaPuntos/")
     @Consumes(MediaType.APPLICATION_JSON)

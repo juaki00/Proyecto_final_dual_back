@@ -105,7 +105,15 @@ public class UserManagerImpl implements UserManager {
             return usuario!=null;
         }
     }
-
+    /**
+     *
+     * @param con conexion con la base de datos
+     * @param nick nick del usuario al que se le sumaran puntos
+     * @param puntos numero de puntos
+     * @return devuelve true si se sumaron los puntos correctamente
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Boolean sumaPuntos(Connection con, String nick, int puntos) {
         try (PreparedStatement prepstm = con.prepareStatement("UPDATE usuarios SET puntos = puntos + ? WHERE nick = ?")) {

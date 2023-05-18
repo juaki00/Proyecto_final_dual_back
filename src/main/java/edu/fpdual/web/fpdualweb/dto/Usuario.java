@@ -5,7 +5,7 @@ import lombok.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/*
+/**
  *  Representacion de un usuario registrado en el sistema
  */
 @Setter
